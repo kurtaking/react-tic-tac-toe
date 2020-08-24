@@ -18,6 +18,8 @@ export default class Game extends React.Component {
         const current = history[history.length - 1];
         const squares = current.squares.slice();
 
+        console.log(this.state.stepNumber);
+
         if (calculateWinner(squares) || squares[i]) {
             return;
         }
@@ -58,8 +60,11 @@ export default class Game extends React.Component {
         })
 
         let status;
+
         if (winner) {
             status = 'Winner: ' + winner;
+        } else if (this.state.stepNumber === 9) {
+            status = 'Draw! Play again';
         } else {
             status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O')
         }
